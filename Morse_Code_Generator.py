@@ -48,6 +48,31 @@ def encryptor(text):
     print(encrypted)
 
 
+def decryptor(text):
+    key_list = list(MORSE_CODE_DICT.keys())
+    val_list = list(MORSE_CODE_DICT.values())
+    space_found = 0
+    morse = ""
+    normal = ""
+    for letter in text:
+        if letter != " ":
+            morse += letter
+            space_found = 0
+        else:
+            space_found += 1
+            if space_found == 2:
+                normal = normal + " "
+            else:
+                normal = normal + key_list[val_list.index(morse)]
+                morse = ""
+    print(normal)
+
+
 print("\n\n\t\tThe Morse Code Generator!")
-text_to_encrypt = input("Enter the text to Encrypt : ").upper()
-encryptor(text_to_encrypt)
+ch = input("Enter 'E' to Encrypt or Enter 'D' to Decrypt : ")
+if ch == "E":
+    text_to_encrypt = input("Enter the text to Encrypt : ").upper()
+    encryptor(text_to_encrypt)
+elif ch == "D":
+    text_to_decrypt = input("Enter the text to Encrypt : ").upper()
+    decryptor(text_to_decrypt)
